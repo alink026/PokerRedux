@@ -7,11 +7,9 @@
 ## Project Description
 
 ## Distribtuion of Work
-+ Who
-  - What
-+ Who
-  - What
-+ Who
-  - What
++ Samantha Waugh
+  - Draw & Hold
++ Nathan Loveless
+  - Breaking Ties
 + Who
   - What
