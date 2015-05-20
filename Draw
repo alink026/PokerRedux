@@ -1,0 +1,18 @@
+import java.util.*;
+
+public class Draw{
+  public hand draw(int n)
+
+}
+/*
+method (Number){
+// can they pick which cards to send back?
+// can they end up redrawing the cards they had?
+// if not
+make card holding variable of number size
+get that many cards form deck
+put Number of cards from hand to deck//if pick then have the user recursive loop here
+then put card holder cards to hand
+//end
+}
+*/
