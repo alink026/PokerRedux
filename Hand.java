@@ -34,36 +34,40 @@ public class Hand implements Comparable {
    WORST
    */
 
-   public int score(){
+   public int score(){//done works!
      //chech for all card types listed above, How do you compare cards?
-    if(){//inorder
-      if(){//all one suit
-        if()//royal flush //inorder from 10 to A
+    if(hand.get(0).value!=hand.get(1).value&&hand.get(1).value!=hand.get(2).value&&hand.get(2).value!=hand.get(3).value&&hand.get(3).value!=hand.get(4).value){//inorder
+      if(hand.get(0).suit==hand.get(1).suit&&hand.get(0).suit==hand.get(2).suit&&hand.get(0).suit==hand.get(3).suit&&hand.get(0).suit==hand.get(4).suit){//all one suit
+        if(hand.get(0).value==10)//royal flush //inorder from 10 to A
           return 1;
-        else if()//straight flush //inorder
-          return 2;
+        else if(hand.get(0).value==hand.get(1).value-1&&hand.get(1).value==hand.get(2).value-1&&hand.get(2).value==hand.get(3).value-1&&hand.get(3).value==hand.get(4).value-1){ //straight flush //inorder
+          return 2;}
         else//flush //not inorder
           return 5;
       }
-      else//Straight //all inorder
+      else if(hand.get(0).value==hand.get(1).value-1&&hand.get(1).value==hand.get(2).value-1&&hand.get(2).value==hand.get(3).value-1&&hand.get(3).value==hand.get(4).value-1)//Straight //all inorder
         return 6;
     }
-    else if()//four of same #
-      return 3;
-    else if(){//if three of same #
-      if()//Full House //also two of same #
+
+    else{
+    if((hand.get(0).value==hand.get(1).value&&hand.get(1).value==hand.get(2).value&&hand.get(2).value==hand.get(3).value)||(hand.get(1).value==hand.get(2).value&&hand.get(2).value==hand.get(3).value&&hand.get(3).value==hand.get(4).value)){ //four of same #
+      return 3;}
+    else if((hand.get(0).value==hand.get(1).value&&hand.get(1).value==hand.get(2).value)||(hand.get(1).value==hand.get(2).value&&hand.get(2).value==hand.get(3).value)||(hand.get(2).value==hand.get(3).value&&hand.get(3).value==hand.get(4).value)){//if three of same #
+      if((hand.get(0).value==hand.get(1).value&&hand.get(1).value!=hand.get(2).value)||(hand.get(2).value!=hand.get(3).value&&hand.get(3).value==hand.get(4).value))//Full House //also two of same #
         return 4;
       else//Three of kind
         return 7;
     }
-    else if(){//has set of two
-      if()//two pair //also second set of two
+    else if((hand.get(0).value==hand.get(1).value)||(hand.get(1).value==hand.get(2).value)||(hand.get(2).value==hand.get(3).value)||(hand.get(3).value==hand.get(4).value)){//has set of two
+      if(((hand.get(0).value==hand.get(1).value)&&(hand.get(2).value==hand.get(3).value))||((hand.get(1).value==hand.get(2).value)&&(hand.get(3).value==hand.get(4).value))||((hand.get(0).value==hand.get(1).value)&&(hand.get(3).value==hand.get(4).value))) //two pair //also second set of two
         return 8;
       else//one pair
         return 9;
     }
     else//high card
       return 10;
+   }
+   return 10;
    }
 
    public String handValue() {
