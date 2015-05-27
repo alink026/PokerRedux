@@ -40,6 +40,7 @@ public class Draw{
     for(int i=0; i<n; i++)
     {
       //some how: select in hand, send to deck, remove specified from hand
+      //mabey by location otherwise by value and suit, must check that they have card though
       //deck.add(hand.remove());
     }
     for(int i=0; i<n; i++)
