@@ -14,4 +14,4 @@
 +Alexander Link
   - Calculate Odds of Player A winning based on hand (without knowing the other players hand)
   - Suggests raise, call, or fold to player based on the above result
-  - 
+  
