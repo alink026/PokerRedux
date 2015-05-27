@@ -1,31 +1,41 @@
 import java.util.*;
 
 public class Draw{
-  private static ArrayList<Card>  Hold;
+  private static ArrayList<Card> hold;
+  private static ArrayList<Card> deck;
+  private Random rng = new Random();
+  private static ArrayList<Card> hand;
 
-  public hand drawSimple(int n)//They get cards and send their's back thus no chance of redraw
+  public Draw()
   {
-    Hold = new ArrayList<Card>(n);
+   //hold = new ArrayList<Card>(n)
+   deck = this.deck;
+   hand = this.hand;
+   //which one we will use
+  }
+  public void drawSimple(int n)//They get cards and send their's back thus no chance of redraw
+  {
+    hold = new ArrayList<Card>(n);
     for(int i=0; i<n; i++)
     {
-      Hold.add(deck.remove());
+      hold.add(deck.remove(rng.nextInt(deck.size()-1)));
     }
     for(int i=0; i<n; i++)
     {
-      deck.add(hand.remove());
+      deck.add(hand.remove(rng.nextInt(hand.size()-1)));
     }
     for(int i=0; i<n; i++)
     {
-      hand.add(Hold.remove());
+      hand.add(hold.remove(rng.nextInt(hold.size()-1)));
     }
   }
 
-  /*public hand drawSelect(int n)//They get to pick which cards to send back
+  /*public void drawSelect(int n)//They get to pick which cards to send back
   {
-    Hold = new ArrayList<Card>(n);
+    hold = new ArrayList<Card>(n);
     for(int i=0; i<n; i++)
     {
-      Hold.add(deck.remove());
+      hold.add(deck.remove());
     }
     for(int i=0; i<n; i++)
     {
@@ -34,19 +44,19 @@ public class Draw{
     }
     for(int i=0; i<n; i++)
     {
-      hand.add(Hold.remove());
+      hand.add(hold.remove());
     }
   }*/
 
-  public hand drawRedraw(int n)//They send cards back first risking to redraw their card
+  public void drawRedraw(int n)//They send cards back first risking to redraw their card
   {
     for(int i=0; i<n; i++)
     {
-      deck.add(hand.remove());
+      deck.add(hand.remove(rng.nextInt(hand.size()-1)));
     }
     for(int i=0; i<n; i++)
     {
-      hand.add(deck.remove());
+      hand.add(deck.remove(rng.nextInt(deck.size()-1)));
     }
   }
 }
