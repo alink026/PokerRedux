@@ -9,6 +9,8 @@ public class Draw{
   public Draw()
   {
    //hold = new ArrayList<Card>(n)
+   //user input how many cards, call metthod with user input
+   //in that method call the card select
    deck = this.deck;
    hand = this.hand;
    //which one we will use
@@ -22,7 +24,7 @@ public class Draw{
     }
     for(int i=0; i<n; i++)
     {
-      deck.add(hand.remove(rng.nextInt(hand.size()-1)));
+      //call the select method, deck.add(hand.remove(rng.nextInt(hand.size()-1)));
     }
     for(int i=0; i<n; i++)
     {
@@ -30,41 +32,18 @@ public class Draw{
     }
   }
 
-  /*public void drawSelect(int n)//They get to pick which cards to send back
+  /*public Card drawSelect()//They get to pick which cards to send back
   {
-    hold = new ArrayList<Card>(n);
-    for(int i=0; i<n; i++)
-    {
-      hold.add(deck.remove());
-    }
-    for(int i=0; i<n; i++)
-    {
       //some how: select in hand, send to deck, remove specified from hand
-      //mabey by location otherwise by value and suit, must check that they have card though
+      //by value and suit, must check that they have card though
       //deck.add(hand.remove());
-    }
-    for(int i=0; i<n; i++)
-    {
-      hand.add(hold.remove());
-    }
   }*/
 
-  public void drawRedraw(int n)//They send cards back first risking to redraw their card
-  {
-    for(int i=0; i<n; i++)
-    {
-      deck.add(hand.remove(rng.nextInt(hand.size()-1)));
-    }
-    for(int i=0; i<n; i++)
-    {
-      hand.add(deck.remove(rng.nextInt(deck.size()-1)));
-    }
-  }
 }
 /*
 method (Number){
-// can they pick which cards to send back?
-// can they end up redrawing the cards they had?
+// can they pick which cards to send back?  Yes
+// can they end up redrawing the cards they had?  No
 // if not
 make card holding variable of number size
 get that many cards form deck
