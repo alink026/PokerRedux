@@ -37,7 +37,7 @@ public class Draw{
     for(int i=n; i>0; i--)
     {
       //Card temp = new Card(hold.get(i).value, hold.get(i).suit);
-      hand.add(hold.remove(rng.nextInt(hold.size()-1)));
+      hand.add(hold.remove(hold.get(rng.nextInt(hold.size()-1))));//need to get card unit from hold
     }
   }
 
@@ -48,7 +48,7 @@ public class Draw{
       System.out.print("\nSuit > ");
       String st = in.nextLine();
       Card chose = new Card(val, st);
-      deck.add(chose);
+      deck.add(chose);//why does deck not accept add
       hand.remove(chose);
   }
 }
