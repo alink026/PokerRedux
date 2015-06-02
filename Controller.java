@@ -8,21 +8,21 @@ public class Controller
 
    public static void main(String[] args){
       deck = new Deck();
-      System.out.println(deck);
+      //System.out.println(deck);
       hand1 = new Hand();
       hand2 = new Hand();
 
       dealHands(5);
-      System.out.println(hand1);
-      System.out.println(hand2);
+      //System.out.println(hand1);
+      //System.out.println(hand2);
 
       hand1.sortHand();
       hand2.sortHand();
       System.out.println(hand1);
       System.out.println(hand2);
 
-      System.out.println("Best Hand: " + hand1.handValue());
-      System.out.println("Best Hand: " + hand2.handValue());
+      System.out.println("Best Hand: " + hand1.handValue().substring(0,2));
+      System.out.println("Best Hand: " + hand2.handValue().substring(0,2));
       System.out.println(findWinner());
    }
 

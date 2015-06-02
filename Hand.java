@@ -166,7 +166,21 @@ public class Hand implements Comparable {
       else if(score(other) > score(this))
          return -1;
       else
-         return 0;
+      {
+         if(this.handValue().length() > other.handValue().length())
+            return 1;
+         else if(this.handValue().length() < other.handValue().length())
+            return -1;
+         else if(Integer.parseInt(this.handValue().substring(3)) > Integer.parseInt(other.handValue().substring(3)))
+            return 1;
+         else
+         {
+            if(this.hand.get(0).value > other.hand.get(0).value)
+               return 1;
+            else
+               return -1;
+         }
+      }
       //player #1 wins print 1 player #2 -1
       //TODO: Compare hands by ordering above; return -1, 1, or 0
    }
