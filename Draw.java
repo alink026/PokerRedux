@@ -4,17 +4,18 @@ public class Draw{
   private static ArrayList<Card> hold;
   private static ArrayList<Card> deck;
   private Random rng = new Random();
-  private static ArrayList<Card> hand;
+  private static Hand hand;
   private static Scanner in = new Scanner(System.in);
 
-  public Draw()
+  public void Draw(Hand x)
   {
-   //hold = new ArrayList<Card>(n)
    //user input how many cards, call metthod with user input
+   System.out.print("How many cards do you want to return to deck? > ");
+   int t = in.nextInt();
    //in that method call the card select
    deck = this.deck;
-   hand = this.hand;
-   //which one we will use
+   hand = x;
+   drawSimple(t);
   }
   public void drawSimple(int n)//They get cards and send their's back thus no chance of redraw
   {
@@ -42,19 +43,17 @@ public class Draw{
       System.out.print("Which card do you wish to return to deck?\nValue > ");
       int val = in.nextInt();
       System.out.print("\nSuit > ");
-      char st = (in.nextLine()).charAt(0);
-      Card chose = new Card(val,s);
+      String st = in.nextLine();
+      Card chose = new Card(val, st);
       if(!hand.contains(chose)){
         System.out.println("This card is not in your hand, try again.");
         drawSelect();
       }
       else
       {
-        deck.add(hand.remove(chose));
+        deck.add(chose);
+        hand.remove(chose);
       }
-      //some how: select in hand, send to deck, remove specified from hand
-      //by value and suit, must check that they have card though
-      //deck.add(hand.remove());
   }
 
 }
