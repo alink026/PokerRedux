@@ -5,6 +5,7 @@ public class Draw{
   private static ArrayList<Card> deck;
   private Random rng = new Random();
   private static ArrayList<Card> hand;
+  private static Scanner in = new Scanner(System.in);
 
   public Draw()
   {
@@ -22,22 +23,39 @@ public class Draw{
     {
       hold.add(deck.remove(rng.nextInt(deck.size()-1)));
     }
+
+    System.out.println("Card name style: Values are 1-13\n\tsuits are h,s,d,c");
     for(int i=0; i<n; i++)
     {
-      //call the select method, deck.add(hand.remove(rng.nextInt(hand.size()-1)));
+      System.out.println(hand);
+      drawSelect();//call the select method, deck.add(hand.remove(rng.nextInt(hand.size()-1)));
     }
+
     for(int i=0; i<n; i++)
     {
       hand.add(hold.remove(rng.nextInt(hold.size()-1)));
     }
   }
 
-  /*public Card drawSelect()//They get to pick which cards to send back
+  private void drawSelect()//They get to pick which cards to send back
   {
+      System.out.print("Which card do you wish to return to deck?\nValue > ");
+      int val = in.nextInt();
+      System.out.print("\nSuit > ");
+      char st = (in.nextLine()).charAt(0);
+      Card chose = new Card(val,s);
+      if(!hand.contains(chose)){
+        System.out.println("This card is not in your hand, try again.");
+        drawSelect();
+      }
+      else
+      {
+        deck.add(hand.remove(chose));
+      }
       //some how: select in hand, send to deck, remove specified from hand
       //by value and suit, must check that they have card though
       //deck.add(hand.remove());
-  }*/
+  }
 
 }
 /*
