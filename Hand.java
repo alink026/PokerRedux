@@ -1,10 +1,12 @@
 import java.util.*;
+import java.util.HashMap;
 
 public class Hand implements Comparable {
    private ArrayList<Card> hand;
 
    public Hand(){
       hand = new ArrayList<Card>();
+
    }
 
    public void add(Card c){
@@ -21,85 +23,151 @@ public class Hand implements Comparable {
 
    /*
    BEST
-   Royal Flush        five in row of same suit(10-A)
-   Straight Flush     five in row of same suit
-   Four of a Kind     four of a kind
-   Full House         a three of a kind + a two of a kind
-   Flush              five cards of the same suit
-   Straight           five in a row suit doesn't matter
-   Three of a Kind    three of a kind
-   Two Pair           two sets of two of a kind
-   One Pair           one set of two of a kind
-   High Card          anything else
+   Royal Flush
+   Straight Flush
+   Four of a Kind
+   Full House
+   Flush
+   Straight
+   Three of a Kind
+   Two Pair
+   One Pair
+   High Card
    WORST
    */
 
-   public int score(){//done works!
-     //chech for all card types listed above, How do you compare cards?
-    if(hand.get(0).value!=hand.get(1).value&&hand.get(1).value!=hand.get(2).value&&hand.get(2).value!=hand.get(3).value&&hand.get(3).value!=hand.get(4).value){//inorder
-      if(hand.get(0).suit==hand.get(1).suit&&hand.get(0).suit==hand.get(2).suit&&hand.get(0).suit==hand.get(3).suit&&hand.get(0).suit==hand.get(4).suit){//all one suit
-        if(hand.get(0).value==10)//royal flush //inorder from 10 to A
-          return 1;
-        else if(hand.get(0).value==hand.get(1).value-1&&hand.get(1).value==hand.get(2).value-1&&hand.get(2).value==hand.get(3).value-1&&hand.get(3).value==hand.get(4).value-1){ //straight flush //inorder
-          return 2;}
-        else//flush //not inorder
-          return 5;
-      }
-      else if(hand.get(0).value==hand.get(1).value-1&&hand.get(1).value==hand.get(2).value-1&&hand.get(2).value==hand.get(3).value-1&&hand.get(3).value==hand.get(4).value-1)//Straight //all inorder
-        return 6;
-    }
-
-    else{
-    if((hand.get(0).value==hand.get(1).value&&hand.get(1).value==hand.get(2).value&&hand.get(2).value==hand.get(3).value)||(hand.get(1).value==hand.get(2).value&&hand.get(2).value==hand.get(3).value&&hand.get(3).value==hand.get(4).value)){ //four of same #
-      return 3;}
-    else if((hand.get(0).value==hand.get(1).value&&hand.get(1).value==hand.get(2).value)||(hand.get(1).value==hand.get(2).value&&hand.get(2).value==hand.get(3).value)||(hand.get(2).value==hand.get(3).value&&hand.get(3).value==hand.get(4).value)){//if three of same #
-      if((hand.get(0).value==hand.get(1).value&&hand.get(1).value!=hand.get(2).value)||(hand.get(2).value!=hand.get(3).value&&hand.get(3).value==hand.get(4).value))//Full House //also two of same #
-        return 4;
-      else//Three of kind
-        return 7;
-    }
-    else if((hand.get(0).value==hand.get(1).value)||(hand.get(1).value==hand.get(2).value)||(hand.get(2).value==hand.get(3).value)||(hand.get(3).value==hand.get(4).value)){//has set of two
-      if(((hand.get(0).value==hand.get(1).value)&&(hand.get(2).value==hand.get(3).value))||((hand.get(1).value==hand.get(2).value)&&(hand.get(3).value==hand.get(4).value))||((hand.get(0).value==hand.get(1).value)&&(hand.get(3).value==hand.get(4).value))) //two pair //also second set of two
-        return 8;
-      else//one pair
-        return 9;
-    }
-    else//high card
-      return 10;
-   }
-   return 10;
-   }
 
    public String handValue() {
-     if(score()==1)
-      return "Royal Flush";
-     else if(score()==2)
-      return "Straight Flush";
-     else if(score()==3)
-      return "Four of a Kind";
-     else if(score()==4)
-      return "Full House";
-     else if(score()==5)
-      return "Flush";
-     else if(score()==6)
-      return "Straight";
-     else if(score()==7)
-      return "Three of a Kind";
-     else if(score()==8)
-      return "Two Pair";
-     else if(score()==9)
-      return "One Pair";
-     else
-      return "High Card";
-     //TODO: String of Best Hand; may need helper methods", Done
+     //return "TODO: String of Best Hand; may need helper methods";
+     return valueHelper();
+   }
+   public String valueHelper()
+   {
+     HashMap<Integer, Integer> numinHand = new HashMap<Integer, Integer>();
+     int t = 0;
+     String handSuit = "a";
+     //for(Card x : this.hand)
+     for(int x = 0; x < this.hand.size(); x++)
+     {
+      if(t == 0)
+         handSuit = this.hand.get(x).suit;
+      else
+      {
+         if(handSuit.equals(this.hand.get(x).suit))
+            {}
+         else
+            handSuit = "differnt";
+      }
+      t++;
+      
+       if(numinHand.containsKey(this.hand.get(x).value))
+       {
+         int temp = numinHand.get(this.hand.get(x).value);
+         numinHand.put(this.hand.get(x).value, ++temp);
+       }
+       else
+       {
+         numinHand.put(this.hand.get(x).value, 1);
+       }
+     }
+     if(handSuit.equals("differnt"))
+     {
+         //Four of a Kind
+         if(numinHand.containsValue(4))
+            return "FK";
+         //Full House
+         if(numinHand.containsValue(3) && numinHand.containsValue(2))
+            return "FH";
+         //Straight
+         for(int x: numinHand.keySet())
+            if(numinHand.containsKey(x+5) && numinHand.containsKey(x+4) && numinHand.containsKey(x+3) && numinHand.containsKey(x+2) && numinHand.containsKey(x+1) || numinHand.containsKey(x-5) && numinHand.containsKey(x-4) && numinHand.containsKey(x-3) && numinHand.containsKey(x-2) && numinHand.containsKey(x-1))
+               return "NS";
+         //Three of a Kind
+         if(numinHand.containsValue(3))
+            return "TK";
+         //Two Pair and One Pair
+         String temp = "OP";
+         String temp2 = "TP";
+         if(numinHand.containsValue(2))
+         {
+            for(int x: numinHand.keySet())
+            {
+               if(numinHand.get(x) == 2 && temp.length() == 2)
+               {
+                  temp = temp + x;
+                  temp2 = temp2 + x;  
+               }
+               else if(numinHand.get(x) == 2 && temp.length() > 2)
+                  temp2 = temp2 + x;
+            }
+            if(temp.length() == temp2.length())
+               return temp;
+            else
+               return temp2;
+         }
+         else
+         {
+            
+         }
+        
+      }
+      else
+      {
+      
+         //Royal Flush
+         if(numinHand.containsKey(14) && numinHand.containsKey(13) && numinHand.containsKey(12) && numinHand.containsKey(11) && numinHand.containsKey(10))
+         {
+           return "RF";
+         }
+         //Straight Flush
+         else if(numinHand.containsKey(10) && numinHand.containsKey(9) && numinHand.containsKey(8) && numinHand.containsKey(7) && numinHand.containsKey(6) || numinHand.containsKey(9) && numinHand.containsKey(8) && numinHand.containsKey(7) && numinHand.containsKey(6) && numinHand.containsKey(5) || numinHand.containsKey(8) && numinHand.containsKey(7) && numinHand.containsKey(6) && numinHand.containsKey(5) && numinHand.containsKey(4) || numinHand.containsKey(7) && numinHand.containsKey(6) && numinHand.containsKey(5) && numinHand.containsKey(4) && numinHand.containsKey(3) || numinHand.containsKey(6) && numinHand.containsKey(5) && numinHand.containsKey(4) && numinHand.containsKey(3) && numinHand.containsKey(2) || numinHand.containsKey(5) && numinHand.containsKey(4) && numinHand.containsKey(3) && numinHand.containsKey(2) && numinHand.containsKey(1))
+         {
+           return "SF";
+         }
+         //Flush
+         else
+            return "NF";
+      
+            
+      }
+
+      return "HC" + this.hand.get(this.hand.size()-1).value;
+   }
+
+   public int score(Hand x)
+   {
+      String m = x.handValue().substring(0,2);
+      if(m.equals("RF"))
+         return 10;
+      else if(m.equals("SF"))
+         return 9;
+      else if(m.equals("FK"))
+         return 8;
+      else if(m.equals("FH"))
+         return 7;
+      else if(m.equals("NF"))
+         return 6;
+      else if(m.equals("NS"))
+         return 5;
+      else if(m.equals("TK"))
+         return 4;
+      else if(m.equals("TP"))
+         return 3;
+      else if(m.equals("OP"))
+         return 2;
+      else
+         return 1;         
    }
 
    public int compareTo(Object x){
       Hand other = (Hand)x;
-      if(other.score()<this.score())
-        return 1;
-      else if(this.score()<other.score())
-        return -1;
-      return 0;//TODO: Compare hands by ordering above; return -1, 1, or 0, Done
+      if(score(this) > score(other))
+         return 1;
+      else if(score(other) > score(this))
+         return -1;
+      else
+         return 0;
+      //player #1 wins print 1 player #2 -1
+      //TODO: Compare hands by ordering above; return -1, 1, or 0
    }
 }
