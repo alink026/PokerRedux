@@ -1,28 +1,30 @@
 import java.util.*;
 
 public class Draw{
-  private static ArrayList<Card> hold;
-  private static ArrayList<Card> deck;
+  private static Hand hold;
+  private static Deck deck;
   private Random rng = new Random();
   private static Hand hand;
   private static Scanner in = new Scanner(System.in);
 
-  public void Draw(Hand x)
+  public Draw()
   {
    //user input how many cards, call metthod with user input
    System.out.print("How many cards do you want to return to deck? > ");
    int t = in.nextInt();
    //in that method call the card select
+   deck = new Deck();
+   hand = new Hand();
+   hold = new Hand();
    deck = this.deck;
-   hand = x;
+   hand = this.hand;
    drawSimple(t);
   }
   public void drawSimple(int n)//They get cards and send their's back thus no chance of redraw
   {
-    hold = new ArrayList<Card>(n);
     for(int i=0; i<n; i++)
     {
-      hold.add(deck.remove(rng.nextInt(deck.size()-1)));
+      hold.add(deck.remove());
     }
 
     System.out.println("Card name style: Values are 1-13\n\tsuits are h,s,d,c");
@@ -32,8 +34,9 @@ public class Draw{
       drawSelect();//call the select method, deck.add(hand.remove(rng.nextInt(hand.size()-1)));
     }
 
-    for(int i=0; i<n; i++)
+    for(int i=n; i>0; i--)
     {
+      //Card temp = new Card(hold.get(i).value, hold.get(i).suit);
       hand.add(hold.remove(rng.nextInt(hold.size()-1)));
     }
   }
@@ -45,17 +48,9 @@ public class Draw{
       System.out.print("\nSuit > ");
       String st = in.nextLine();
       Card chose = new Card(val, st);
-      if(!hand.contains(chose)){
-        System.out.println("This card is not in your hand, try again.");
-        drawSelect();
-      }
-      else
-      {
-        deck.add(chose);
-        hand.remove(chose);
-      }
+      deck.add(chose);
+      hand.remove(chose);
   }
-
 }
 /*
 method (Number){
