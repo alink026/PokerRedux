@@ -28,7 +28,7 @@ public class Draw{
       hold.add(deck.remove());
     }
 
-    System.out.println("Card name style: \nValues are 1-13\nsuits are h,s,d,c\n");
+    System.out.println("Card name style: \nValues are 1-13; A=1, J=11, Q=12, K=13\nsuits are h,s,d,c\n");
     for(int i=0; i<n; i++)
     {
       System.out.println(hold);
@@ -43,7 +43,7 @@ public class Draw{
   }
 
   private void drawSelect()//They get to pick which cards to send back
-  {
+  {//want to have it re ask if any info is miss typed and or if card chosen is not one in hand
       System.out.print("Which card do you wish to return to deck?\nValue > ");
       int val = in.nextInt();
       System.out.print("");

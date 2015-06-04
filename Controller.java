@@ -22,7 +22,7 @@ public class Controller
       System.out.println(hand1);
       System.out.println(hand2);
       Draw fix = new Draw(hand1);
-      //fix.Draw();
+      Draw fix2 = new Draw(hand2);
 
       System.out.println("Best Hand: " + hand1.handValue());
       System.out.println("Best Hand: " + hand2.handValue());
