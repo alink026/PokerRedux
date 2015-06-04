@@ -12,6 +12,7 @@ public class Draw{
    //user input how many cards, call metthod with user input
    System.out.print("How many cards do you want to return to deck? > ");
    int t = in.nextInt();
+   System.out.println();
    //in that method call the card select
    deck = new Deck();
    hand = new Hand();
