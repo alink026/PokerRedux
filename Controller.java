@@ -21,14 +21,14 @@ public class Controller
       hand2.sortHand();
       System.out.println(hand1);
       System.out.println(hand2);
-      Draw fix = new Draw();
+      Draw fix = new Draw(hand1);
       //fix.Draw();
 
       System.out.println("Best Hand: " + hand1.handValue());
       System.out.println("Best Hand: " + hand2.handValue());
       System.out.println(findWinner());
    }
-   
+
    public static void dealHands(int x){
       //TODO: Deal x cards to each player, Done
       for(int i=0; i<x; i++)

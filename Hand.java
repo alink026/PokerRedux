@@ -18,7 +18,7 @@ public class Hand implements Comparable {
    public String toString(){
       return hand.toString();
    }
-   
+
    public Card remove(Card c){
       for(int i=0; i<5; i++)
       {
@@ -26,6 +26,10 @@ public class Hand implements Comparable {
             return hand.remove(i);
       }
       return null;
+   }
+
+   public Card remove(int x){
+      return hand.get(x);
    }
 
 
