@@ -79,26 +79,34 @@ public class Hand implements Comparable {
          if(numinHand.containsValue(3) && numinHand.containsValue(2))
             return "FH";
          //Straight
-         for(int x: numinHand.keySet())
-            if(numinHand.containsKey(x+5) && numinHand.containsKey(x+4) && numinHand.containsKey(x+3) && numinHand.containsKey(x+2) && numinHand.containsKey(x+1) || numinHand.containsKey(x-5) && numinHand.containsKey(x-4) && numinHand.containsKey(x-3) && numinHand.containsKey(x-2) && numinHand.containsKey(x-1))
+         int x = this.hand.get(0).value;
+         if(numinHand.containsKey(x+4) && numinHand.containsKey(x+3) && numinHand.containsKey(x+2) && numinHand.containsKey(x+1) || numinHand.containsKey(x-4) && numinHand.containsKey(x-3) && numinHand.containsKey(x-2) && numinHand.containsKey(x-1))
                return "NS";
          //Three of a Kind
          if(numinHand.containsValue(3))
+         {
+            int temp = 0;
+            for(int m : numinHand.keySet())
+            {
+               if(numinHand.get(m) == 3)
+                  temp = m;
+            }
             return "TK";
+         }
          //Two Pair and One Pair
          String temp = "OP";
          String temp2 = "TP";
          if(numinHand.containsValue(2))
          {
-            for(int x: numinHand.keySet())
+            for(int m: numinHand.keySet())
             {
-               if(numinHand.get(x) == 2 && temp.length() == 2)
+               if(numinHand.get(m) == 2 && temp.length() == 2)
                {
-                  temp = temp + x;
-                  temp2 = temp2 + x;  
+                  temp = temp + m;
+                  temp2 = temp2 + m;  
                }
-               else if(numinHand.get(x) == 2 && temp.length() > 2)
-                  temp2 = temp2 + x;
+               else if(numinHand.get(m) == 2 && temp.length() > 2)
+                  temp2 = temp2 + m;
             }
             if(temp.length() == temp2.length())
                return temp;
@@ -120,7 +128,7 @@ public class Hand implements Comparable {
            return "RF";
          }
          //Straight Flush
-         else if(numinHand.containsKey(10) && numinHand.containsKey(9) && numinHand.containsKey(8) && numinHand.containsKey(7) && numinHand.containsKey(6) || numinHand.containsKey(9) && numinHand.containsKey(8) && numinHand.containsKey(7) && numinHand.containsKey(6) && numinHand.containsKey(5) || numinHand.containsKey(8) && numinHand.containsKey(7) && numinHand.containsKey(6) && numinHand.containsKey(5) && numinHand.containsKey(4) || numinHand.containsKey(7) && numinHand.containsKey(6) && numinHand.containsKey(5) && numinHand.containsKey(4) && numinHand.containsKey(3) || numinHand.containsKey(6) && numinHand.containsKey(5) && numinHand.containsKey(4) && numinHand.containsKey(3) && numinHand.containsKey(2) || numinHand.containsKey(5) && numinHand.containsKey(4) && numinHand.containsKey(3) && numinHand.containsKey(2) && numinHand.containsKey(1))
+         else if(numinHand.containsKey(10) && numinHand.containsKey(9) && numinHand.containsKey(8) && numinHand.containsKey(7) && numinHand.containsKey(6) || numinHand.containsKey(9) && numinHand.containsKey(8) && numinHand.containsKey(7) && numinHand.containsKey(6) && numinHand.containsKey(5) || numinHand.containsKey(8) && numinHand.containsKey(7) && numinHand.containsKey(6) && numinHand.containsKey(5) && numinHand.containsKey(4) || numinHand.containsKey(7) && numinHand.containsKey(6) && numinHand.containsKey(5) && numinHand.containsKey(4) && numinHand.containsKey(3) || numinHand.containsKey(6) && numinHand.containsKey(5) && numinHand.containsKey(4) && numinHand.containsKey(3) && numinHand.containsKey(2) || numinHand.containsKey(5) && numinHand.containsKey(4) && numinHand.containsKey(3) && numinHand.containsKey(2) && numinHand.containsKey(1) || numinHand.containsKey(11) && numinHand.containsKey(10) && numinHand.containsKey(9) && numinHand.containsKey(8) && numinHand.containsKey(7) || numinHand.containsKey(12) && numinHand.containsKey(11) && numinHand.containsKey(10) && numinHand.containsKey(9) && numinHand.containsKey(8) || numinHand.containsKey(13) && numinHand.containsKey(12) && numinHand.containsKey(11) && numinHand.containsKey(10) && numinHand.containsKey(9))
          {
            return "SF";
          }
@@ -168,23 +176,13 @@ public class Hand implements Comparable {
       //tie breakers
       else
       {  
-         int temp1 = 0;
-         int temp2 = 0;
-         if(this.handValue().length() > 2)
-         {
-            temp1 = Integer.parseInt(this.handValue().substring(2));
-         }
-         if(other.handValue().length() > 2)
-         {
-            temp2 = Integer.parseInt(other.handValue().substring(2));
-         }
          if(this.handValue().length() > other.handValue().length())
             return 1;
          else if(this.handValue().length() < other.handValue().length())
             return -1;
-         else if(temp1 >  temp2)
+         else if(Integer.parseInt(this.handValue().substring(2)) >  Integer.parseInt(other.handValue().substring(2)))
             return 1;
-         else if(temp2 > temp1)
+         else if(Integer.parseInt(other.handValue().substring(2)) > Integer.parseInt(this.handValue().substring(2)))
             return -1;
          else
          {
