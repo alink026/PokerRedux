@@ -28,7 +28,7 @@ public class Draw{
       hold.add(deck.remove());
     }
 
-    System.out.println("Card name style: Values are 1-13\n\tsuits are h,s,d,c");
+    System.out.println("Card name style: \nValues are 1-13\nsuits are h,s,d,c\n");
     for(int i=0; i<n; i++)
     {
       System.out.println(hold);
@@ -38,8 +38,7 @@ public class Draw{
 
     for(int i=n; i>0; i--)
     {
-      //Card temp = new Card(hold.get(i).value, hold.get(i).suit);
-      hand.add(hold.remove(i));//need to get card unit from hold
+      hand.add(hold.remove());//need to get card unit from hold
     }
   }
 
