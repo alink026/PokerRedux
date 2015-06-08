@@ -32,7 +32,7 @@ public class Draw{
       System.out.println(hand);
       drawSelect();//call the select method
     }
-    for(int i=0; i<y; i++)
+    for(int i=0; i<n; i++)
     {
       Card c = hold.get(i);
       hand.set(ints.get(i), c);//now adds card to hand from hold

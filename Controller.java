@@ -23,7 +23,8 @@ public class Controller
       System.out.println(hand2);
       
       Draw fix = new Draw(hand1, deck);
-      //Draw fix2 = new Draw(hand2);
+      System.out.println("\nNext player:\n");
+      Draw fix2 = new Draw(hand2, deck);
 
       hand1.sortHand();
       hand2.sortHand();
