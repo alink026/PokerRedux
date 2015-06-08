@@ -2,7 +2,6 @@ import java.util.*;
 
 public class Hand implements Comparable {
    private ArrayList<Card> hand;
-   private Random rng = new Random();
 
    public Hand(){
       hand = new ArrayList<Card>();
@@ -19,21 +18,14 @@ public class Hand implements Comparable {
    public String toString(){
       return hand.toString();
    }
-
-   public Card remove(Card c){
-      for(int i=0; i<5; i++)
-      {
-         if((hand.get(i).value==c.value)&&(hand.get(i).suit==c.suit))
-            return hand.remove(i);
-      }
-      return c;
+   
+   public Card get(int i){
+      return hand.get(i);
    }
-
-   public Card remove(){
-     int rand = rng.nextInt(hand.size()-1);
-     return hand.remove(rand);
+   
+   public void set(int i, Card c){
+      hand.set(i, c);
    }
-
 
    /*
    BEST

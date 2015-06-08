@@ -21,9 +21,14 @@ public class Controller
       hand2.sortHand();
       System.out.println(hand1);
       System.out.println(hand2);
-      Draw fix = new Draw(hand1);
-      Draw fix2 = new Draw(hand2);
+      
+      Draw fix = new Draw(hand1, deck);
+      //Draw fix2 = new Draw(hand2);
 
+      hand1.sortHand();
+      hand2.sortHand();
+      System.out.println(hand1);
+      System.out.println(hand2);
       System.out.println("Best Hand: " + hand1.handValue());
       System.out.println("Best Hand: " + hand2.handValue());
       System.out.println(findWinner());
