@@ -28,4 +28,7 @@ public class Deck {
    public String toString(){
       return deck.toString();
    }
+   public void add(Card c){
+      deck.add(c);
+   }
 }
